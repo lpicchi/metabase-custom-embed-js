@@ -1,0 +1,27 @@
+{
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "incremental": true,
+    "tsBuildInfoFile": "node_modules/.cache/.tsbuildinfo",
+    "paths": {
+      "embedding-sdk-bundle/*": [
+        "./frontend/src/embedding-sdk-bundle/*"
+      ],
+      "embedding-sdk-shared/*": [
+        "./frontend/src/embedding-sdk-shared/*"
+      ],
+      "metabase/*": ["./frontend/src/metabase/*"],
+      "metabase-types/*": ["./frontend/src/metabase-types/*"],
+      "sdk-iframe-embedding-script-ee-plugins": [
+        "./frontend/src/metabase/plugins/noop"
+      ],
+    },
+  },
+  "files": [
+    "frontend/src/metabase/embedding/embedding-iframe-sdk/embed.ts",
+    "frontend/src/types/global.d.ts"
+  ],
+  "exclude": [
+    "node_modules",
+  ]
+}

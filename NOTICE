@@ -1,0 +1,65 @@
+This project includes source code derived from the Metabase project.
+
+Metabase source revision:
+99f918928c9809b87f1e39e3e594f5c97dd31265
+
+Metabase repository:
+https://github.com/metabase/metabase
+
+The following files are derived from source files located at the same
+paths in the Metabase repository:
+
+frontend/src/embedding-sdk-bundle/components/public/CollectionBrowser/CollectionBrowser.tsx
+frontend/src/embedding-sdk-bundle/components/public/CollectionBrowser/index.ts
+frontend/src/embedding-sdk-bundle/types/dashboard.ts
+frontend/src/embedding-sdk-bundle/types/index.ts
+frontend/src/embedding-sdk-bundle/types/question.ts
+frontend/src/embedding-sdk-bundle/types/ui.ts
+frontend/src/embedding-sdk-shared/errors/base.ts
+frontend/src/embedding-sdk-shared/errors/error-code.ts
+frontend/src/embedding-sdk-shared/errors/error-docs-links.ts
+frontend/src/embedding-sdk-shared/errors/generic.ts
+frontend/src/embedding-sdk-shared/errors/index.ts
+frontend/src/embedding-sdk-shared/errors/jwt.ts
+frontend/src/embedding-sdk-shared/errors/saml.ts
+frontend/src/embedding-sdk-shared/types/auth-config.ts
+frontend/src/metabase/env.ts
+frontend/src/metabase/embedding/embedding-iframe-sdk/analytics.ts
+frontend/src/metabase/embedding/embedding-iframe-sdk/constants.ts
+frontend/src/metabase/embedding/embedding-iframe-sdk/embed.ts
+frontend/src/metabase/embedding/embedding-iframe-sdk/plugin.ts
+frontend/src/metabase/embedding/embedding-iframe-sdk/webcomponents.ts
+frontend/src/metabase/embedding/embedding-iframe-sdk/types/auth-manager.ts
+frontend/src/metabase/embedding/embedding-iframe-sdk/types/embed.ts
+frontend/src/metabase/embedding/embedding-iframe-sdk/types/modular-embedding.ts
+frontend/src/metabase/embedding/embedding-iframe-sdk/utils/post-message.ts
+frontend/src/metabase/embedding/embedding-iframe-sdk-setup/types.ts
+frontend/src/metabase/embedding-sdk/theme/index.ts
+frontend/src/metabase/embedding-sdk/theme/MetabaseTheme.ts
+frontend/src/metabase/embedding-sdk/types/dashboard.ts
+frontend/src/metabase/embedding-sdk/types/refresh-token.ts
+frontend/src/metabase/embedding-sdk/types/utils.ts
+frontend/src/metabase/plugins/noop.ts
+frontend/src/metabase/redux/store/embedding-data-picker.ts
+frontend/src/metabase/utils/iframe.ts
+frontend/src/metabase/utils/jwt.ts
+frontend/src/metabase/utils/noop.ts
+frontend/src/metabase-types/analytics/embedded-analytics-js.ts
+frontend/src/metabase-types/api/collection.ts
+frontend/src/metabase-types/api/embedding-theme.ts
+frontend/src/metabase-types/api/entity.ts
+frontend/src/metabase-types/api/fonts.ts
+frontend/src/metabase-types/api/index.ts
+frontend/src/metabase-types/utils/types.ts
+frontend/src/types/global.d.ts
+
+The original source code is Copyright © Metabase, Inc. and contributors
+and is licensed under the GNU Affero General Public License, version 3.
+
+This project contains modifications and additional code made independently
+from the original Metabase project.
+
+See LICENSE for the license applicable to this project.
+
+This project is not affiliated with, sponsored by, or endorsed by
+Metabase, Inc.

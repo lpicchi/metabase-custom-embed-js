@@ -1,0 +1,32 @@
+# Metabase Guest Embed
+
+An independently maintained build of the Metabase Guest Embed web
+components.
+
+This project is based on source code from the Metabase open-source
+project and is intended to provide a standalone, customizable
+`embed.js` build for Metabase Guest Embeds.
+
+## Components
+
+The generated `embed.js` provides:
+
+- `<metabase-dashboard>`
+- `<metabase-question>`
+
+## Usage
+
+```html
+<script defer src="https://example.com/embed.js"></script>
+
+<script>
+  window.metabaseConfig = {
+    isGuest: true,
+    instanceUrl: "https://metabase.example.com",
+    guestEmbedProviderUri: "/api/metabase-guest-token"
+  };
+</script>
+
+<metabase-dashboard
+  token="..."
+></metabase-dashboard>
