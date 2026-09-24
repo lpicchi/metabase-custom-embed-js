@@ -136,6 +136,7 @@ tag and configure the embed via `window.metabaseConfig`:
 
 <script>
   window.metabaseConfig = {
+    isGuest: true,
     instanceUrl: "https://metabase.example.com",
     guestEmbedProviderUri: "/api/metabase-guest-token",
   };
@@ -308,6 +309,7 @@ loadMetabaseEmbed();
 
 <script>
   window.metabaseConfig = {
+    isGuest: true,
     instanceUrl: "https://metabase.example.com",
     guestEmbedProvider: async ({ entityType, entityId, customContext, expiredToken }) => {
       const response = await fetch("/api/metabase-guest-token", {
