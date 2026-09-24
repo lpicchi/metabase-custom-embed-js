@@ -2766,6 +2766,7 @@ __metadata:
     babel-loader: "npm:10.0.0"
     cross-env: "npm:10.1.0"
     icepick: "npm:2.4.0"
+    json5: "npm:^2.2.3"
     swc-loader: "npm:^0.2.7"
     ts-node: "npm:^10.9.2"
     ts-pattern: "npm:^5.9.0"

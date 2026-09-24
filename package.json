@@ -58,6 +58,7 @@
   },
   "dependencies": {
     "icepick": "2.4.0",
+    "json5": "^2.2.3",
     "ts-pattern": "^5.9.0",
     "underscore": "^1.13.8"
   },
