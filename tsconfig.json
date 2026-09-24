@@ -5,23 +5,28 @@
     "tsBuildInfoFile": "node_modules/.cache/.tsbuildinfo",
     "paths": {
       "embedding-sdk-bundle/*": [
-        "./frontend/src/embedding-sdk-bundle/*"
+        "./src/frontend/src/embedding-sdk-bundle/*"
       ],
       "embedding-sdk-shared/*": [
-        "./frontend/src/embedding-sdk-shared/*"
+        "./src/frontend/src/embedding-sdk-shared/*"
       ],
-      "metabase/*": ["./frontend/src/metabase/*"],
-      "metabase-types/*": ["./frontend/src/metabase-types/*"],
+      "metabase/*": [
+        "./src/frontend/src/metabase/*"
+      ],
+      "metabase-types/*": [
+        "./src/frontend/src/metabase-types/*"
+      ],
       "sdk-iframe-embedding-script-ee-plugins": [
-        "./frontend/src/metabase/plugins/noop"
+        "./src/frontend/src/metabase/plugins/noop"
       ],
     },
   },
-  "files": [
-    "frontend/src/metabase/embedding/embedding-iframe-sdk/embed.ts",
-    "frontend/src/types/global.d.ts"
+  "include": [
+    "src/frontend/src/**/*.ts",
+    "src/frontend/src/**/*.tsx",
+    "src/loader.ts"
   ],
   "exclude": [
-    "node_modules",
+    "node_modules"
   ]
 }

@@ -2,10 +2,37 @@
   "name": "custom-metabase-embed-js",
   "version": "1.0.0",
   "license": "AGPL-3.0-only",
+  "type": "module",
+  "main": "./dist/metabase/loader.js",
+  "module": "./dist/metabase/loader.js",
+  "types": "./dist/metabase/loader.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/metabase/loader.d.ts",
+      "import": "./dist/metabase/loader.js",
+      "require": "./dist/metabase/loader.js"
+    },
+    "./embed": "./dist/metabase/embed.js",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist/metabase/loader.js",
+    "dist/metabase/loader.d.ts",
+    "dist/metabase/embed.js",
+    "README.md",
+    "LICENSE"
+  ],
+  "sideEffects": [
+    "./dist/metabase/loader.js",
+    "./dist/metabase/embed.js"
+  ],
   "scripts": {
     "start": "cross-env NODE_ENV=development webpack serve",
-    "build": "cross-env NODE_ENV=production webpack --mode=production",
-    "typecheck": "tsc -p tsconfig.json --noEmit"
+    "build": "cross-env NODE_ENV=production webpack --mode=production && yarn build:types",
+    "build:types": "tsc -p tsconfig.build-types.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "prepack": "yarn build",
+    "prepublishOnly": "yarn build"
   },
   "devDependencies": {
     "@babel/core": "7.28.5",

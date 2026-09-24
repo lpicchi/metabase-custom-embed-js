@@ -1,0 +1,10 @@
+{
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "declaration": true,
+    "emitDeclarationOnly": true,
+    "outDir": "dist/metabase",
+    "noEmit": false
+  },
+  "files": ["src/loader.ts"]
+}

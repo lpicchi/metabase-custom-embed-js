@@ -15,23 +15,30 @@ const devServerConfig: DevServerConfiguration = {
 
 const config: Configuration = {
   name: "iframe_sdk_embed_v1",
-  entry: path.resolve(
-    __dirname,
-    "frontend/src/metabase/embedding/embedding-iframe-sdk/embed.ts"
-  ),
-  output: {
-    // We must use a different directory than the main Webpack config,
-    // otherwise the path conflicts and the output bundle will not appear.
-    path: path.resolve(process.cwd(), "dist/metabase"),
-    filename: "embed.js",
 
+  entry: {
+    // Browser standalone script (kept for backward compatibility).
+    embed: path.resolve(
+      __dirname,
+      "src/frontend/src/metabase/embedding/embedding-iframe-sdk/embed.ts",
+    ),
+    // Public npm API.
+    loader: path.resolve(__dirname, "src/loader.ts"),
+  },
+
+  output: {
+    path: path.resolve(process.cwd(), "dist/metabase"),
+    filename: "[name].js",
     library: {
-      name: ["metabase", "embed"],
       type: "umd",
+      name: ["metabase", "embed"],
     },
     globalObject: "this",
+    clean: false,
   },
+
   devServer: devServerConfig,
+
   module: {
     rules: [
       {
@@ -42,45 +49,44 @@ const config: Configuration = {
           options: {
             jsc: {
               loose: true,
-              parser: {
-                syntax: "typescript",
-              },
+              parser: { syntax: "typescript" },
             },
             sourceMaps: false,
             minify: false,
-            env: {
-              targets: ["defaults"],
-            },
+            env: { targets: ["defaults"] },
           },
         },
         type: "javascript/auto",
       },
     ],
   },
+
   optimization: {
     splitChunks: false,
     runtimeChunk: false,
   },
+
   devtool: false,
+
   resolve: {
     extensions: [".js", ".ts", ".tsx"],
     alias: {
       "embedding-sdk-bundle": path.resolve(
         __dirname,
-        "frontend/src/embedding-sdk-bundle"
+        "src/frontend/src/embedding-sdk-bundle",
       ),
       "embedding-sdk-shared": path.resolve(
         __dirname,
-        "frontend/src/embedding-sdk-shared"
+        "src/frontend/src/embedding-sdk-shared",
       ),
-      metabase: path.resolve(__dirname, "frontend/src/metabase"),
+      metabase: path.resolve(__dirname, "src/frontend/src/metabase"),
       "metabase-types": path.resolve(
         __dirname,
-        "frontend/src/metabase-types"
+        "src/frontend/src/metabase-types",
       ),
       "sdk-iframe-embedding-script-ee-plugins": path.resolve(
         __dirname,
-        "frontend/src/metabase/plugins/noop"
+        "src/frontend/src/metabase/plugins/noop",
       ),
     },
   },
