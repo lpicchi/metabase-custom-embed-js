@@ -32,7 +32,7 @@ import { attributeToSettingKey, parseAttributeValue } from "./webcomponents";
 import "sdk-iframe-embedding-script-ee-plugins";
 
 const GUEST_EMBED_PROVIDER_SENTINEL_URI =
-"https://metabase-custom-embed-js.invalid/sentinel";;
+"https://metabase-custom-embed-js.invalid/sentinel";
 
 /**
  * Injects a sentinel `guestEmbedProviderUri` when only `guestEmbedProvider`
