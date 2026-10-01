@@ -337,7 +337,26 @@ If the provider fails or returns an invalid response, the embed reports
 an authentication error to the iframe and mounts the component without a
 token so the error can be displayed.
 
----
+### Sentinel `guestEmbedProviderUri` (workaround)
+
+`embed.js` (and the equivalent `embed.ts` module loaded by the npm
+package) normalizes `window.metabaseConfig` on both initial read and on
+every assignment, injecting a sentinel `guestEmbedProviderUri` whenever
+`guestEmbedProvider` is set without one.
+
+The sentinel exists because the SDK's `refreshGuestSession` guard still
+requires `guestEmbedProviderUri` to be truthy. Since `_callGuestTokenProvider`
+prefers `guestEmbedProvider` at call time, the URI is never fetched.
+
+This applies to **both entry points**:
+
+- **npm package** — the loader merges your config; `embed.ts` evaluates
+  during `loadMetabaseEmbed()` and its config watcher injects the sentinel.
+- **script tag** — `embed.js` evaluates on script load and its config
+  watcher injects the sentinel on whichever path applies (initial read
+  or setter).
+
+You never need to set the sentinel yourself when using this package.
 
 ## API
 

@@ -31,6 +31,24 @@ import { attributeToSettingKey, parseAttributeValue } from "./webcomponents";
 // Import EE Iframe Embedding script plugins
 import "sdk-iframe-embedding-script-ee-plugins";
 
+const GUEST_EMBED_PROVIDER_SENTINEL_URI =
+"/__metabase_guest_embed_provider_sentinel__";
+
+/**
+ * Injects a sentinel `guestEmbedProviderUri` when only `guestEmbedProvider`
+ * is set. The mainstream SDK's `refreshGuestSession` guard requires the URI
+ */
+const normalizeMetabaseConfig = (
+  config: Record<string, unknown> | undefined | null,
+): Record<string, unknown> => {
+  if (!config) return {};
+  if (config.guestEmbedProvider && !config.guestEmbedProviderUri) {
+    console.info("Injecting guestEmbedProviderUri sentinel");
+    return { ...config, guestEmbedProviderUri: GUEST_EMBED_PROVIDER_SENTINEL_URI };
+  }
+  return config;
+};
+
 const EMBEDDING_ROUTE = "embed/sdk/v1";
 
 /** list of active embeds, used to know which embeds to update when the global config changes */
@@ -63,8 +81,12 @@ export const setupConfigWatcher = () => {
       },
     });
 
+  // Normalize on initial read — covers the case where the customer set
+  // `window.metabaseConfig` before this script was evaluated.
   // Unjustified type cast. FIXME
-  let currentConfig = (window as any).metabaseConfig || {};
+  let currentConfig = normalizeMetabaseConfig(
+    (window as any).metabaseConfig,
+  );
   let proxyConfig: Record<string, unknown> = createProxy(currentConfig);
 
   Object.defineProperty(window, "metabaseConfig", {
@@ -75,9 +97,13 @@ export const setupConfigWatcher = () => {
     },
     set(newVal: Record<string, unknown>) {
       assertFieldCanBeUpdated(newVal);
-      assertValidMetabaseConfigField(newVal);
 
-      currentConfig = { ...currentConfig, ...newVal };
+      // Normalize before validation so the injected sentinel is validated
+      // like any other field, and before merging so `currentConfig` carries it.
+      const normalized = normalizeMetabaseConfig(newVal);
+      assertValidMetabaseConfigField(normalized);
+
+      currentConfig = { ...currentConfig, ...normalized };
       proxyConfig = createProxy(currentConfig);
       updateAllEmbeds(currentConfig);
     },
